@@ -86,7 +86,7 @@
     "ansi_up": "^5.0.1",
     "jest-circus": "^27.0.3",
     "jest-docblock": "^27.0.1",
-    "jest-environment-node": "^27.0.3",
+    "jest-environment-jsdom": "^27.5.1",
     "lodash": "^4.17.21",
     "prettier": "^2.3.0",
     "pretty-format": "^27.0.2",
