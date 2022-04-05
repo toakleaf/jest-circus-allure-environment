@@ -9,9 +9,8 @@ function extendAllureBaseEnvironment(Base) {
         constructor(config, context) {
             super(config, context);
             this.handleTestEvent = (event, state) => {
-                Console.log(`Event: ${event.name}`);
-                Console.log({event});
                 var _a;
+                console.log(`Event: ${event.name}`, { event });
                 switch (event.name) {
                     case 'setup':
                         break;
