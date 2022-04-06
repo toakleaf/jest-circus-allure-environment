@@ -381,7 +381,7 @@ export default class AllureReporter {
 
 		if (parentSuite) {
 			currentTest.addLabel(LabelName.PARENT_SUITE, parentSuite);
-			currentTest.addLabel(LabelName.PACKAGE, parentSuite);
+			// currentTest.addLabel(LabelName.PACKAGE, parentSuite);
 			currentTest.addLabel(LabelName.PACKAGE, this?.currentSuite?.name || "GreenBayPackage");
 		}
 

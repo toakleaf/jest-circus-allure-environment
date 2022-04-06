@@ -287,7 +287,7 @@ class AllureReporter {
         console.warn("currentSuite:", (_a = this === null || this === void 0 ? void 0 : this.currentSuite) === null || _a === void 0 ? void 0 : _a.name);
         if (parentSuite) {
             currentTest.addLabel(allure_js_commons_1.LabelName.PARENT_SUITE, parentSuite);
-            currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, parentSuite);
+            // currentTest.addLabel(LabelName.PACKAGE, parentSuite);
             currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, ((_b = this === null || this === void 0 ? void 0 : this.currentSuite) === null || _b === void 0 ? void 0 : _b.name) || "GreenBayPackage");
         }
         if (suites.length > 0) {
