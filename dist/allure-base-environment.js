@@ -150,6 +150,7 @@ function extendAllureBaseEnvironment(Base) {
             this.testPath = this.initializeTestPath(config, context);
             this.testFileName = path_1.basename(this.testPath);
             this.reporter = this.initializeAllureReporter(config);
+            console.log("Reporter:", JSON.stringify(this.reporter));
             this.global.allure = this.reporter.getImplementation();
         }
         initializeTestPath(config, context) {
