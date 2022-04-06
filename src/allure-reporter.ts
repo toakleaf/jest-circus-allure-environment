@@ -154,6 +154,7 @@ export default class AllureReporter {
 			throw new Error('startTestCase called while no suite is running');
 		}
 
+		console.log("currentSuite:", JSON.stringify(this.currentSuite))
 		let currentTest = this.currentSuite.startTest(test.name);
 		currentTest.fullName = test.name;
 		currentTest.historyId = createHash('md5')
