@@ -107,7 +107,6 @@ class AllureReporter {
         if (this.currentSuite === null) {
             throw new Error('startTestCase called while no suite is running');
         }
-        console.log("currentSuite:", this.currentSuite.name);
         let currentTest = this.currentSuite.startTest(test.name);
         currentTest.fullName = test.name;
         currentTest.historyId = crypto_1.createHash('md5')
@@ -279,11 +278,13 @@ class AllureReporter {
         }
     }
     addSuiteLabelsToTestCase(currentTest, testPath) {
+        var _a;
         const isWindows = os.type() === 'Windows_NT';
         const pathDelimiter = isWindows ? '\\' : '/';
         const pathsArray = testPath.split(pathDelimiter);
         const [parentSuite, ...suites] = pathsArray;
         const subSuite = suites.pop();
+        console.warn("currentSuite:", (_a = this === null || this === void 0 ? void 0 : this.currentSuite) === null || _a === void 0 ? void 0 : _a.name);
         if (parentSuite) {
             currentTest.addLabel(allure_js_commons_1.LabelName.PARENT_SUITE, parentSuite);
             currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, parentSuite);

@@ -154,7 +154,6 @@ export default class AllureReporter {
 			throw new Error('startTestCase called while no suite is running');
 		}
 
-		console.log("currentSuite:", this.currentSuite.name)
 		let currentTest = this.currentSuite.startTest(test.name);
 		currentTest.fullName = test.name;
 		currentTest.historyId = createHash('md5')
@@ -377,6 +376,8 @@ export default class AllureReporter {
 
 		const [parentSuite, ...suites] = pathsArray;
 		const subSuite = suites.pop();
+
+		console.warn("currentSuite:", this?.currentSuite?.name)
 
 		if (parentSuite) {
 			currentTest.addLabel(LabelName.PARENT_SUITE, parentSuite);
