@@ -25,9 +25,9 @@ function extendAllureBaseEnvironment<TBase extends typeof JestEnvironment>(Base:
 			this.testFileName = basename(this.testPath);
 
 			this.reporter = this.initializeAllureReporter(config);
-			console.log("Reporter:", JSON.stringify(this.reporter))
-			console.log("testPath:", JSON.stringify(this.testPath))
-			console.log("testFileName:", JSON.stringify(this.testFileName))
+			// console.log("Reporter:", JSON.stringify(this.reporter))
+			// console.log("testPath:", JSON.stringify(this.testPath))
+			// console.log("testFileName:", JSON.stringify(this.testFileName))
 
 			this.global.allure = this.reporter.getImplementation();
 		}
