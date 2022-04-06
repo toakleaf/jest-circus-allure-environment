@@ -73,7 +73,7 @@ function extendAllureBaseEnvironment<TBase extends typeof JestEnvironment>(Base:
 		}
 
 		handleTestEvent = (event: Circus.Event, state: Circus.State) => {
-			console.log(`Event: ${event.name}`, {event});
+			// console.log(`Event: ${event.name}`, {event});
 
 			switch (event.name) {
 				case 'setup':

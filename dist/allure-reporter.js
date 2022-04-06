@@ -278,17 +278,16 @@ class AllureReporter {
         }
     }
     addSuiteLabelsToTestCase(currentTest, testPath) {
-        var _a, _b;
+        var _a;
         const isWindows = os.type() === 'Windows_NT';
         const pathDelimiter = isWindows ? '\\' : '/';
         const pathsArray = testPath.split(pathDelimiter);
         const [parentSuite, ...suites] = pathsArray;
-        const subSuite = suites.pop();
-        console.warn("currentSuite:", (_a = this === null || this === void 0 ? void 0 : this.currentSuite) === null || _a === void 0 ? void 0 : _a.name);
+        const subSuite = ((_a = this.currentSuite) === null || _a === void 0 ? void 0 : _a.name) || suites.pop();
         if (parentSuite) {
             currentTest.addLabel(allure_js_commons_1.LabelName.PARENT_SUITE, parentSuite);
             // currentTest.addLabel(LabelName.PACKAGE, parentSuite);
-            currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, ((_b = this === null || this === void 0 ? void 0 : this.currentSuite) === null || _b === void 0 ? void 0 : _b.name) || "GreenBayPackage");
+            currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, subSuite || parentSuite);
         }
         if (suites.length > 0) {
             currentTest.addLabel(allure_js_commons_1.LabelName.SUITE, suites.join(' > '));

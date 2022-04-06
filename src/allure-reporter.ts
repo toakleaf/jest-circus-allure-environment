@@ -375,14 +375,12 @@ export default class AllureReporter {
 		const pathsArray = testPath.split(pathDelimiter);
 
 		const [parentSuite, ...suites] = pathsArray;
-		const subSuite = suites.pop();
-
-		console.warn("currentSuite:", this?.currentSuite?.name)
+		const subSuite = this.currentSuite?.name || suites.pop();
 
 		if (parentSuite) {
 			currentTest.addLabel(LabelName.PARENT_SUITE, parentSuite);
 			// currentTest.addLabel(LabelName.PACKAGE, parentSuite);
-			currentTest.addLabel(LabelName.PACKAGE, this?.currentSuite?.name || "GreenBayPackage");
+			currentTest.addLabel(LabelName.PACKAGE, subSuite || parentSuite);
 		}
 
 		if (suites.length > 0) {
