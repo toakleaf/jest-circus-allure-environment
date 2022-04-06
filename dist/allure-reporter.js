@@ -107,7 +107,7 @@ class AllureReporter {
         if (this.currentSuite === null) {
             throw new Error('startTestCase called while no suite is running');
         }
-        console.log("currentSuite:", JSON.stringify(this.currentSuite));
+        console.log("currentSuite:", this.currentSuite.name);
         let currentTest = this.currentSuite.startTest(test.name);
         currentTest.fullName = test.name;
         currentTest.historyId = crypto_1.createHash('md5')
