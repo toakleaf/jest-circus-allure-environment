@@ -116,7 +116,6 @@ class AllureReporter {
         if (test.fn) {
             const serializedTestCode = test.fn.toString();
             const { code, comments, pragmas } = this.extractCodeDetails(serializedTestCode);
-            console.log("pragmas", JSON.stringify(pragmas));
             this.setAllureReportPragmas(currentTest, pragmas);
             currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
         }
@@ -161,6 +160,7 @@ class AllureReporter {
             throw new Error('endTest called while no test is running');
         }
         this.currentTest.stage = allure_js_commons_1.Stage.FINISHED;
+        console.log('endTest', JSON.stringify(this.currentTest, null, 2));
         this.currentTest.endTest();
         this.popTest();
     }

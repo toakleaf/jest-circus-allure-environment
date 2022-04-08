@@ -165,7 +165,6 @@ export default class AllureReporter {
 			const serializedTestCode = test.fn.toString();
 			const {code, comments, pragmas} = this.extractCodeDetails(serializedTestCode);
 
-			console.log("pragmas", JSON.stringify(pragmas))
 			this.setAllureReportPragmas(currentTest, pragmas);
 
 			currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
@@ -225,6 +224,7 @@ export default class AllureReporter {
 		}
 
 		this.currentTest.stage = Stage.FINISHED;
+		console.log('endTest', JSON.stringify(this.currentTest, null, 2))
 		this.currentTest.endTest();
 		this.popTest();
 	}
