@@ -223,9 +223,6 @@ export default class AllureReporter {
 			throw new Error('endTest called while no test is running');
 		}
 
-		console.log('details trace:', JSON.stringify(this.currentTest.detailsTrace, null, 2))
-		console.log('endTest:', JSON.stringify(this.currentTest, null, 2))
-
 		this.currentTest.stage = Stage.FINISHED;
 		this.currentTest.endTest();
 		this.popTest();
@@ -377,8 +374,6 @@ export default class AllureReporter {
 		const pathDelimiter = isWindows ? '\\' : '/';
 		const pathsArray = testPath.split(pathDelimiter);
 		const subSuite = this.currentSuite?.name;
-
-		// currentTest.addLabel(LabelName.PARENT_SUITE, currentTest. || "NONE");
 
 		if (pathsArray.length) {
 			const packageLabel = subSuite ? `${pathsArray.join('/')}::${subSuite}` : pathsArray.join('/');

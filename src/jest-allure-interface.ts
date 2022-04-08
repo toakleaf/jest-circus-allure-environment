@@ -81,6 +81,7 @@ export default class JestAllureInterface extends Allure {
 
 	owner(owner: string) {
 		this.label(LabelName.OWNER, owner);
+		this.label(LabelName.PACKAGE, owner);
 	}
 
 	lead(lead: string) {

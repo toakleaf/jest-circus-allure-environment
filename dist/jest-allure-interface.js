@@ -54,6 +54,7 @@ class JestAllureInterface extends allure_js_commons_1.Allure {
     }
     owner(owner) {
         this.label(allure_js_commons_1.LabelName.OWNER, owner);
+        this.label(allure_js_commons_1.LabelName.PACKAGE, owner);
     }
     lead(lead) {
         this.label(allure_js_commons_1.LabelName.LEAD, lead);
