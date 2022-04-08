@@ -116,7 +116,7 @@ class AllureReporter {
         if (test.fn) {
             const serializedTestCode = test.fn.toString();
             const { code, comments, pragmas } = this.extractCodeDetails(serializedTestCode);
-            console.log("pragmas", pragmas);
+            console.log("pragmas", JSON.stringify(pragmas));
             this.setAllureReportPragmas(currentTest, pragmas);
             currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
         }
