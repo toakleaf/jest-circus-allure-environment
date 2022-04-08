@@ -34,6 +34,8 @@ export default class JestAllureInterface extends Allure {
     owner(owner: string): void;
     lead(lead: string): void;
     epic(epic: string): void;
+    vertical(vertical: string): void;
+    horizontal(horizontal: string): void;
     feature(feature: string): void;
     story(story: string): void;
     issue(name: string): void;

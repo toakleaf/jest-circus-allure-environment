@@ -92,6 +92,14 @@ export default class JestAllureInterface extends Allure {
 		this.label(LabelName.EPIC, epic);
 	}
 
+	vertical(vertical: string) {
+		this.epic(vertical)
+	}
+
+	horizontal(horizontal: string) {
+		this.epic(horizontal)
+	}
+
 	feature(feature: string) {
 		this.label(LabelName.FEATURE, feature);
 	}

@@ -62,6 +62,12 @@ class JestAllureInterface extends allure_js_commons_1.Allure {
     epic(epic) {
         this.label(allure_js_commons_1.LabelName.EPIC, epic);
     }
+    vertical(vertical) {
+        this.epic(vertical);
+    }
+    horizontal(horizontal) {
+        this.epic(horizontal);
+    }
     feature(feature) {
         this.label(allure_js_commons_1.LabelName.FEATURE, feature);
     }
