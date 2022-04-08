@@ -113,7 +113,6 @@ class AllureReporter {
             .update(testPath + '.' + test.name)
             .digest('hex');
         currentTest.stage = allure_js_commons_1.Stage.RUNNING;
-        console.log("currentTest", currentTest);
         if (test.fn) {
             const serializedTestCode = test.fn.toString();
             const { code, comments, pragmas } = this.extractCodeDetails(serializedTestCode);
@@ -258,6 +257,7 @@ class AllureReporter {
         }
     }
     setAllureLabelsAndLinks(currentTest, labelName, value) {
+        console.log(labelName, value);
         switch (labelName) {
             case 'issue':
                 currentTest.addLink(`${this.jiraUrl}${value}`, value, allure_js_commons_1.LinkType.ISSUE);
