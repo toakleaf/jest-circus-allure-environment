@@ -44,7 +44,6 @@ export default class AllureReporter {
     private handleError;
     private extractCodeDetails;
     private extractDocBlock;
-    private extractTestOwner;
     private setAllureReportPragmas;
     private setAllureLabelsAndLinks;
     private addSuiteLabelsToTestCase;

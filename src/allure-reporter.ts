@@ -160,13 +160,12 @@ export default class AllureReporter {
 			.update(testPath + '.' + test.name)
 			.digest('hex');
 		currentTest.stage = Stage.RUNNING;
+		console.log("currentTest", currentTest);
 
-		let testOwner = '';
 		if (test.fn) {
 			const serializedTestCode = test.fn.toString();
 			const {code, comments, pragmas} = this.extractCodeDetails(serializedTestCode);
 
-			testOwner = this.extractTestOwner(code);
 			this.setAllureReportPragmas(currentTest, pragmas);
 
 			currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
@@ -180,7 +179,7 @@ export default class AllureReporter {
 			currentTest.addLabel(LabelName.THREAD, state.parentProcess.env.JEST_WORKER_ID);
 		}
 
-		currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath, testOwner);
+		currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath);
 		this.pushTest(currentTest);
 	}
 
@@ -331,12 +330,6 @@ export default class AllureReporter {
 		return match ? match[0].trimStart() : '';
 	}
 
-	private extractTestOwner(code: string): string {
-		const ownerRe = /owner\((.*)\)/;
-		const match = code.match(ownerRe)
-		return match?.[1] || '';
-	}
-
 	private setAllureReportPragmas(currentTest: AllureTest, pragmas: Record<string, string | string[]>) {
 		for (let [pragma, value] of Object.entries(pragmas)) {
 			if (value instanceof String && value.includes(',')) {
@@ -377,16 +370,17 @@ export default class AllureReporter {
 		}
 	}
 
-	private addSuiteLabelsToTestCase(currentTest: AllureTest, testPath: string, testOwner: string): AllureTest {
+	private addSuiteLabelsToTestCase(currentTest: AllureTest, testPath: string): AllureTest {
 		const isWindows = os.type() === 'Windows_NT';
 		const pathDelimiter = isWindows ? '\\' : '/';
 		const pathsArray = testPath.split(pathDelimiter);
 		const subSuite = this.currentSuite?.name;
 
-		currentTest.addLabel(LabelName.PARENT_SUITE, testOwner || "NONE");
+		// currentTest.addLabel(LabelName.PARENT_SUITE, currentTest. || "NONE");
 
 		if (pathsArray.length) {
-			currentTest.addLabel(LabelName.PACKAGE, pathsArray.join('.'));
+			const packageLabel = subSuite ? `${pathsArray.join('/')}::${subSuite}` : pathsArray.join('/');
+			currentTest.addLabel(LabelName.PACKAGE, packageLabel);
 			currentTest.addLabel(LabelName.SUITE, pathsArray.slice(-1)[0]);
 		}
 

@@ -113,11 +113,10 @@ class AllureReporter {
             .update(testPath + '.' + test.name)
             .digest('hex');
         currentTest.stage = allure_js_commons_1.Stage.RUNNING;
-        let testOwner = '';
+        console.log("currentTest", currentTest);
         if (test.fn) {
             const serializedTestCode = test.fn.toString();
             const { code, comments, pragmas } = this.extractCodeDetails(serializedTestCode);
-            testOwner = this.extractTestOwner(code);
             this.setAllureReportPragmas(currentTest, pragmas);
             currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
         }
@@ -127,7 +126,7 @@ class AllureReporter {
         if ((_b = (_a = state.parentProcess) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.JEST_WORKER_ID) {
             currentTest.addLabel(allure_js_commons_1.LabelName.THREAD, state.parentProcess.env.JEST_WORKER_ID);
         }
-        currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath, testOwner);
+        currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath);
         this.pushTest(currentTest);
     }
     passTestCase() {
@@ -243,11 +242,6 @@ class AllureReporter {
         const match = contents.match(docblockRe);
         return match ? match[0].trimStart() : '';
     }
-    extractTestOwner(code) {
-        const ownerRe = /owner\((.*)\)/;
-        const match = code.match(ownerRe);
-        return (match === null || match === void 0 ? void 0 : match[1]) || '';
-    }
     setAllureReportPragmas(currentTest, pragmas) {
         for (let [pragma, value] of Object.entries(pragmas)) {
             if (value instanceof String && value.includes(',')) {
@@ -284,15 +278,16 @@ class AllureReporter {
                 break;
         }
     }
-    addSuiteLabelsToTestCase(currentTest, testPath, testOwner) {
+    addSuiteLabelsToTestCase(currentTest, testPath) {
         var _a;
         const isWindows = os.type() === 'Windows_NT';
         const pathDelimiter = isWindows ? '\\' : '/';
         const pathsArray = testPath.split(pathDelimiter);
         const subSuite = (_a = this.currentSuite) === null || _a === void 0 ? void 0 : _a.name;
-        currentTest.addLabel(allure_js_commons_1.LabelName.PARENT_SUITE, testOwner || "NONE");
+        // currentTest.addLabel(LabelName.PARENT_SUITE, currentTest. || "NONE");
         if (pathsArray.length) {
-            currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, pathsArray.join('.'));
+            const packageLabel = subSuite ? `${pathsArray.join('/')}::${subSuite}` : pathsArray.join('/');
+            currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, packageLabel);
             currentTest.addLabel(allure_js_commons_1.LabelName.SUITE, pathsArray.slice(-1)[0]);
         }
         if (subSuite) {
