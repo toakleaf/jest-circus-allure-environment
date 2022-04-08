@@ -25,9 +25,6 @@ function extendAllureBaseEnvironment<TBase extends typeof JestEnvironment>(Base:
 			this.testFileName = basename(this.testPath);
 
 			this.reporter = this.initializeAllureReporter(config);
-			// console.log("Reporter:", JSON.stringify(this.reporter))
-			// console.log("testPath:", JSON.stringify(this.testPath))
-			// console.log("testFileName:", JSON.stringify(this.testFileName))
 
 			this.global.allure = this.reporter.getImplementation();
 		}
@@ -73,7 +70,6 @@ function extendAllureBaseEnvironment<TBase extends typeof JestEnvironment>(Base:
 		}
 
 		handleTestEvent = (event: Circus.Event, state: Circus.State) => {
-			// console.log(`Event: ${event.name}`, {event});
 
 			switch (event.name) {
 				case 'setup':
@@ -219,16 +215,12 @@ function extendAllureBaseEnvironment<TBase extends typeof JestEnvironment>(Base:
 					 * Haven't found a good example of when this is emitted yet.
 					 */
 
-					// console.log('ERROR EVENT:', event);
-
 					break;
 				default:
 					/**
 					 * @privateRemarks
 					 * Haven't found a good example of when this is emitted yet.
 					*/
-
-					// console.log('UNHANDLED EVENT:', event);
 
 					break;
 			}

@@ -9,7 +9,6 @@ function extendAllureBaseEnvironment(Base) {
         constructor(config, context) {
             super(config, context);
             this.handleTestEvent = (event, state) => {
-                // console.log(`Event: ${event.name}`, {event});
                 var _a;
                 switch (event.name) {
                     case 'setup':
@@ -133,14 +132,12 @@ function extendAllureBaseEnvironment(Base) {
                          * @privateRemarks
                          * Haven't found a good example of when this is emitted yet.
                          */
-                        // console.log('ERROR EVENT:', event);
                         break;
                     default:
                         /**
                          * @privateRemarks
                          * Haven't found a good example of when this is emitted yet.
                         */
-                        // console.log('UNHANDLED EVENT:', event);
                         break;
                 }
             };
@@ -150,9 +147,6 @@ function extendAllureBaseEnvironment(Base) {
             this.testPath = this.initializeTestPath(config, context);
             this.testFileName = path_1.basename(this.testPath);
             this.reporter = this.initializeAllureReporter(config);
-            // console.log("Reporter:", JSON.stringify(this.reporter))
-            // console.log("testPath:", JSON.stringify(this.testPath))
-            // console.log("testFileName:", JSON.stringify(this.testFileName))
             this.global.allure = this.reporter.getImplementation();
         }
         initializeTestPath(config, context) {

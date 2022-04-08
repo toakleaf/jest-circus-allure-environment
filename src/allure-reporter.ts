@@ -161,10 +161,12 @@ export default class AllureReporter {
 			.digest('hex');
 		currentTest.stage = Stage.RUNNING;
 
+		let testOwner = '';
 		if (test.fn) {
 			const serializedTestCode = test.fn.toString();
 			const {code, comments, pragmas} = this.extractCodeDetails(serializedTestCode);
 
+			testOwner = this.extractTestOwner(code);
 			this.setAllureReportPragmas(currentTest, pragmas);
 
 			currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
@@ -178,7 +180,7 @@ export default class AllureReporter {
 			currentTest.addLabel(LabelName.THREAD, state.parentProcess.env.JEST_WORKER_ID);
 		}
 
-		currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath);
+		currentTest = this.addSuiteLabelsToTestCase(currentTest, testPath, testOwner);
 		this.pushTest(currentTest);
 	}
 
@@ -329,6 +331,12 @@ export default class AllureReporter {
 		return match ? match[0].trimStart() : '';
 	}
 
+	private extractTestOwner(code: string): string {
+		const ownerRe = /owner\((.*)\)/;
+		const match = code.match(ownerRe)
+		return match?.[1] || '';
+	}
+
 	private setAllureReportPragmas(currentTest: AllureTest, pragmas: Record<string, string | string[]>) {
 		for (let [pragma, value] of Object.entries(pragmas)) {
 			if (value instanceof String && value.includes(',')) {
@@ -369,22 +377,17 @@ export default class AllureReporter {
 		}
 	}
 
-	private addSuiteLabelsToTestCase(currentTest: AllureTest, testPath: string): AllureTest {
+	private addSuiteLabelsToTestCase(currentTest: AllureTest, testPath: string, testOwner: string): AllureTest {
 		const isWindows = os.type() === 'Windows_NT';
 		const pathDelimiter = isWindows ? '\\' : '/';
 		const pathsArray = testPath.split(pathDelimiter);
+		const subSuite = this.currentSuite?.name;
 
-		const [parentSuite, ...suites] = pathsArray;
-		const subSuite = this.currentSuite?.name || suites.pop();
+		currentTest.addLabel(LabelName.PARENT_SUITE, testOwner || "NONE");
 
-		if (parentSuite) {
-			currentTest.addLabel(LabelName.PARENT_SUITE, parentSuite);
-			// currentTest.addLabel(LabelName.PACKAGE, parentSuite);
-			currentTest.addLabel(LabelName.PACKAGE, subSuite || parentSuite);
-		}
-
-		if (suites.length > 0) {
-			currentTest.addLabel(LabelName.SUITE, suites.join(' > '));
+		if (pathsArray.length) {
+			currentTest.addLabel(LabelName.PACKAGE, pathsArray.join('.'));
+			currentTest.addLabel(LabelName.SUITE, pathsArray.slice(-1)[0]);
 		}
 
 		if (subSuite) {
