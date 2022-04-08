@@ -116,6 +116,7 @@ class AllureReporter {
         if (test.fn) {
             const serializedTestCode = test.fn.toString();
             const { code, comments, pragmas } = this.extractCodeDetails(serializedTestCode);
+            console.log("pragmas", pragmas);
             this.setAllureReportPragmas(currentTest, pragmas);
             currentTest.description = `${comments}\n### Test\n\`\`\`typescript\n${code}\n\`\`\`\n`;
         }
@@ -257,7 +258,6 @@ class AllureReporter {
         }
     }
     setAllureLabelsAndLinks(currentTest, labelName, value) {
-        console.log(labelName, value);
         switch (labelName) {
             case 'issue':
                 currentTest.addLink(`${this.jiraUrl}${value}`, value, allure_js_commons_1.LinkType.ISSUE);
