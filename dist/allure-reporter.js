@@ -159,8 +159,9 @@ class AllureReporter {
         if (this.currentTest === null) {
             throw new Error('endTest called while no test is running');
         }
+        console.log('details trace:', JSON.stringify(this.currentTest.detailsTrace, null, 2));
+        console.log('endTest:', JSON.stringify(this.currentTest, null, 2));
         this.currentTest.stage = allure_js_commons_1.Stage.FINISHED;
-        console.log('endTest', JSON.stringify(this.currentTest, null, 2));
         this.currentTest.endTest();
         this.popTest();
     }

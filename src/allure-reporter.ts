@@ -223,8 +223,10 @@ export default class AllureReporter {
 			throw new Error('endTest called while no test is running');
 		}
 
+		console.log('details trace:', JSON.stringify(this.currentTest.detailsTrace, null, 2))
+		console.log('endTest:', JSON.stringify(this.currentTest, null, 2))
+
 		this.currentTest.stage = Stage.FINISHED;
-		console.log('endTest', JSON.stringify(this.currentTest, null, 2))
 		this.currentTest.endTest();
 		this.popTest();
 	}
