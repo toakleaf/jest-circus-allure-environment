@@ -376,7 +376,7 @@ export default class AllureReporter {
 		const subSuite = this.currentSuite?.name;
 
 		if (pathsArray.length) {
-			const packageLabel = subSuite ? `${pathsArray.join('/')}::${subSuite}` : pathsArray.join('/');
+			const packageLabel = subSuite ? `${pathsArray.join('/')} - ${subSuite}` : pathsArray.join('/');
 			currentTest.addLabel(LabelName.PACKAGE, packageLabel);
 			currentTest.addLabel(LabelName.SUITE, pathsArray.slice(-1)[0]);
 		}

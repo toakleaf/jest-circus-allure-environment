@@ -93,11 +93,11 @@ export default class JestAllureInterface extends Allure {
 	}
 
 	vertical(vertical: string) {
-		this.epic(vertical)
+		this.epic(vertical);
 	}
 
 	horizontal(horizontal: string) {
-		this.epic(horizontal)
+		this.epic(horizontal);
 	}
 
 	feature(feature: string) {
@@ -106,6 +106,10 @@ export default class JestAllureInterface extends Allure {
 
 	story(story: string) {
 		this.label(LabelName.STORY, story);
+	}
+
+	functions(functions: string) {
+		this.story(functions);
 	}
 
 	issue(name: string) {
