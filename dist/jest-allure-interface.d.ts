@@ -38,6 +38,7 @@ export default class JestAllureInterface extends Allure {
     horizontal(horizontal: string): void;
     feature(feature: string): void;
     story(story: string): void;
+    functions(functions: string): void;
     issue(name: string): void;
     tms(name: string): void;
     startStep(name: string): StepWrapper;

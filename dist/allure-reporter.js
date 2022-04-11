@@ -284,7 +284,7 @@ class AllureReporter {
         const pathsArray = testPath.split(pathDelimiter);
         const subSuite = (_a = this.currentSuite) === null || _a === void 0 ? void 0 : _a.name;
         if (pathsArray.length) {
-            const packageLabel = subSuite ? `${pathsArray.join('/')}::${subSuite}` : pathsArray.join('/');
+            const packageLabel = subSuite ? `${pathsArray.join('/')} - ${subSuite}` : pathsArray.join('/');
             currentTest.addLabel(allure_js_commons_1.LabelName.PACKAGE, packageLabel);
             currentTest.addLabel(allure_js_commons_1.LabelName.SUITE, pathsArray.slice(-1)[0]);
         }

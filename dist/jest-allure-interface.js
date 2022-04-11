@@ -74,6 +74,9 @@ class JestAllureInterface extends allure_js_commons_1.Allure {
     story(story) {
         this.label(allure_js_commons_1.LabelName.STORY, story);
     }
+    functions(functions) {
+        this.story(functions);
+    }
     issue(name) {
         this.link(this.jiraUrl, name, allure_js_commons_1.LinkType.ISSUE);
     }
