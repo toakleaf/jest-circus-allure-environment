@@ -1,6 +1,6 @@
 type SimpleArgs = string | Array<string>;
 
-type ComplexArgs = { [key: string]: string } | Array<{ [key: string]: string }>;
+type ComplexArgs = { [key: string]: string };
 
 enum SimpleMethodTypes {
   "OWNERS" = "owners",
@@ -164,14 +164,9 @@ export default class AllureBuilder {
     args: SimpleArgs,
     overwriteExisting: boolean = true
   ) {
-    if (overwriteExisting) {
-      this.methodCalls[key] = [...[args].flat().map((name) => () => fn(name))];
-    } else {
-      this.methodCalls[key] = [
-        ...(this.methodCalls[key] || []),
-        ...[args].flat().map((name) => () => fn(name)),
-      ];
-    }
+    const prev = this.methodCalls[key];
+    const cur = [args].flat().map((name) => () => fn(name));
+    this.methodCalls[key] = prev && overwriteExisting ? [...prev, ...cur] : cur;
   }
 
   private addComplexMethod(
@@ -181,20 +176,14 @@ export default class AllureBuilder {
     overwriteExisting: boolean = true
   ) {
     if (!this.methodCalls[key]) this.methodCalls[key] = {};
-    if (overwriteExisting) {
-      [args].flat().forEach((arg) => {
-        const [subKey, subVal] = Object.entries(arg)[0];
-        this.methodCalls[key]![subKey] = [
-          () => {
-            fn(subKey, subVal);
-          },
-        ];
-      });
-    } else {
-      [args].flat().forEach((arg) => {
-        const [subKey, subVal] = Object.entries(arg)[0];
-        this.methodCalls[key]![subKey] = [() => fn(subKey, subVal)];
-      });
-    }
+
+    Object.entries(args).forEach(([subKey, subVal]) => {
+      const prev = this.methodCalls[key]?.[subKey];
+      const func = () => {
+        fn(subKey, subVal);
+      };
+      this.methodCalls[key]![subKey] =
+        prev && !overwriteExisting ? [...prev, func] : [func];
+    });
   }
 }

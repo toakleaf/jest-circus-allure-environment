@@ -1,9 +1,7 @@
 declare type SimpleArgs = string | Array<string>;
 declare type ComplexArgs = {
     [key: string]: string;
-} | Array<{
-    [key: string]: string;
-}>;
+};
 declare enum SimpleMethodTypes {
     "OWNERS" = "owners",
     "EPICS" = "epics",
