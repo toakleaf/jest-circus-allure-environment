@@ -18,6 +18,6 @@ Object.defineProperty(exports, "extendAllureBaseEnvironment", { enumerable: true
 __exportStar(require("allure-js-commons"), exports);
 var jest_allure_interface_1 = require("./jest-allure-interface");
 Object.defineProperty(exports, "ContentType", { enumerable: true, get: function () { return jest_allure_interface_1.ContentType; } });
-var AllureBuilder_1 = require("./AllureBuilder");
-Object.defineProperty(exports, "AllureBuilder", { enumerable: true, get: function () { return AllureBuilder_1.default; } });
+var allure_builder_1 = require("./allure-builder");
+Object.defineProperty(exports, "AllureBuilder", { enumerable: true, get: function () { return allure_builder_1.default; } });
 //# sourceMappingURL=index.js.map

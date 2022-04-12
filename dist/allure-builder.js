@@ -110,4 +110,4 @@ class AllureBuilder {
     }
 }
 exports.default = AllureBuilder;
-//# sourceMappingURL=AllureBuilder.js.map
+//# sourceMappingURL=allure-builder.js.map
