@@ -45,21 +45,27 @@ class AllureBuilder {
     }
     owner(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.OWNERS, this.getSimpleAllureMethod(SimpleMethodTypes.OWNERS), args, overwriteExisting);
+        return this;
     }
     epic(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.EPICS, this.getSimpleAllureMethod(SimpleMethodTypes.EPICS), args, overwriteExisting);
+        return this;
     }
     feature(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.FEATURES, this.getSimpleAllureMethod(SimpleMethodTypes.FEATURES), args, overwriteExisting);
+        return this;
     }
     story(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.STORIES, this.getSimpleAllureMethod(SimpleMethodTypes.STORIES), args, overwriteExisting);
+        return this;
     }
     parameter(args, overwriteExisting) {
         this.addComplexMethod(ComplexMethodTypes.PARAMETERS, this.getComplexAllureMethod(ComplexMethodTypes.PARAMETERS), args, overwriteExisting);
+        return this;
     }
     label(args, overwriteExisting) {
         this.addComplexMethod(ComplexMethodTypes.LABELS, this.getComplexAllureMethod(ComplexMethodTypes.LABELS), args, overwriteExisting);
+        return this;
     }
     getSimpleAllureMethod(key) {
         const methodMapping = {
