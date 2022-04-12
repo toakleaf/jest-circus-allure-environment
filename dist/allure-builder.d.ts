@@ -17,8 +17,8 @@ declare type ConstructorArgs = Partial<Record<SimpleMethodTypes, SimpleArgs>> | 
 export default class AllureBuilder {
     private methodCalls;
     constructor(args?: ConstructorArgs);
-    build(): void;
-    reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined): void;
+    build(): this;
+    reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined): this;
     owner(args: SimpleArgs, overwriteExisting: boolean): this;
     vertical: (args: SimpleArgs, overwriteExisting: boolean) => this;
     horizontal: (args: SimpleArgs, overwriteExisting: boolean) => this;

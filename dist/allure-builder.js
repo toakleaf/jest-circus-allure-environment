@@ -42,6 +42,7 @@ class AllureBuilder {
             return Object.values(val).flat();
         });
         flatMethodCalls.forEach((method) => method());
+        return this;
     }
     reset(methodCallKeys) {
         if (!methodCallKeys)
@@ -51,6 +52,7 @@ class AllureBuilder {
                 delete this.methodCalls[key];
             });
         }
+        return this;
     }
     owner(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.OWNERS, this.getSimpleAllureMethod(SimpleMethodTypes.OWNERS), args, overwriteExisting);

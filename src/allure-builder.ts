@@ -68,6 +68,7 @@ export default class AllureBuilder {
       }
     );
     flatMethodCalls.forEach((method) => method());
+    return this;
   }
 
   reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined) {
@@ -77,6 +78,7 @@ export default class AllureBuilder {
         delete this.methodCalls[key];
       });
     }
+    return this;
   }
 
   owner(args: SimpleArgs, overwriteExisting: boolean) {
