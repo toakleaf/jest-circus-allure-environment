@@ -55,27 +55,27 @@ class AllureBuilder {
         }
         return this;
     }
-    owner(args, overwriteExisting) {
+    owner(args, overwriteExisting = true) {
         this.addSimpleMethod(SimpleMethodTypes.OWNERS, this.getSimpleAllureMethod(SimpleMethodTypes.OWNERS), args, overwriteExisting);
         return this;
     }
-    epic(args, overwriteExisting) {
+    epic(args, overwriteExisting = true) {
         this.addSimpleMethod(SimpleMethodTypes.EPICS, this.getSimpleAllureMethod(SimpleMethodTypes.EPICS), args, overwriteExisting);
         return this;
     }
-    feature(args, overwriteExisting) {
+    feature(args, overwriteExisting = true) {
         this.addSimpleMethod(SimpleMethodTypes.FEATURES, this.getSimpleAllureMethod(SimpleMethodTypes.FEATURES), args, overwriteExisting);
         return this;
     }
-    story(args, overwriteExisting) {
+    story(args, overwriteExisting = true) {
         this.addSimpleMethod(SimpleMethodTypes.STORIES, this.getSimpleAllureMethod(SimpleMethodTypes.STORIES), args, overwriteExisting);
         return this;
     }
-    parameter(args, overwriteExisting) {
+    parameter(args, overwriteExisting = true) {
         this.addComplexMethod(ComplexMethodTypes.PARAMETERS, this.getComplexAllureMethod(ComplexMethodTypes.PARAMETERS), args, overwriteExisting);
         return this;
     }
-    label(args, overwriteExisting) {
+    label(args, overwriteExisting = true) {
         this.addComplexMethod(ComplexMethodTypes.LABELS, this.getComplexAllureMethod(ComplexMethodTypes.LABELS), args, overwriteExisting);
         return this;
     }

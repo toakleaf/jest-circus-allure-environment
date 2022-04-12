@@ -81,7 +81,7 @@ export default class AllureBuilder {
     return this;
   }
 
-  owner(args: SimpleArgs, overwriteExisting: boolean) {
+  owner(args: SimpleArgs, overwriteExisting: boolean = true) {
     this.addSimpleMethod(
       SimpleMethodTypes.OWNERS,
       this.getSimpleAllureMethod(SimpleMethodTypes.OWNERS),
@@ -94,7 +94,7 @@ export default class AllureBuilder {
   vertical = this.epic;
   horizontal = this.epic;
 
-  epic(args: SimpleArgs, overwriteExisting: boolean) {
+  epic(args: SimpleArgs, overwriteExisting: boolean = true) {
     this.addSimpleMethod(
       SimpleMethodTypes.EPICS,
       this.getSimpleAllureMethod(SimpleMethodTypes.EPICS),
@@ -104,7 +104,7 @@ export default class AllureBuilder {
     return this;
   }
 
-  feature(args: SimpleArgs, overwriteExisting: boolean) {
+  feature(args: SimpleArgs, overwriteExisting: boolean = true) {
     this.addSimpleMethod(
       SimpleMethodTypes.FEATURES,
       this.getSimpleAllureMethod(SimpleMethodTypes.FEATURES),
@@ -116,7 +116,7 @@ export default class AllureBuilder {
 
   function = this.story;
 
-  story(args: SimpleArgs, overwriteExisting: boolean) {
+  story(args: SimpleArgs, overwriteExisting: boolean = true) {
     this.addSimpleMethod(
       SimpleMethodTypes.STORIES,
       this.getSimpleAllureMethod(SimpleMethodTypes.STORIES),
@@ -126,7 +126,7 @@ export default class AllureBuilder {
     return this;
   }
 
-  parameter(args: ComplexArgs, overwriteExisting: boolean) {
+  parameter(args: ComplexArgs, overwriteExisting: boolean = true) {
     this.addComplexMethod(
       ComplexMethodTypes.PARAMETERS,
       this.getComplexAllureMethod(ComplexMethodTypes.PARAMETERS),
@@ -136,7 +136,7 @@ export default class AllureBuilder {
     return this;
   }
 
-  label(args: ComplexArgs, overwriteExisting: boolean) {
+  label(args: ComplexArgs, overwriteExisting: boolean = true) {
     this.addComplexMethod(
       ComplexMethodTypes.LABELS,
       this.getComplexAllureMethod(ComplexMethodTypes.LABELS),
