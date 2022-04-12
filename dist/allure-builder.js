@@ -43,6 +43,15 @@ class AllureBuilder {
         });
         flatMethodCalls.forEach((method) => method());
     }
+    reset(methodCallKeys) {
+        if (!methodCallKeys)
+            this.methodCalls = {};
+        else {
+            [methodCallKeys].flat().forEach((key) => {
+                delete this.methodCalls[key];
+            });
+        }
+    }
     owner(args, overwriteExisting) {
         this.addSimpleMethod(SimpleMethodTypes.OWNERS, this.getSimpleAllureMethod(SimpleMethodTypes.OWNERS), args, overwriteExisting);
         return this;

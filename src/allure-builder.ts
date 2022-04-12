@@ -14,6 +14,8 @@ enum ComplexMethodTypes {
   "LABELS" = "labels",
 }
 
+export type MethodTypes = SimpleMethodTypes | ComplexMethodTypes;
+
 type ConstructorArgs =
   | Partial<Record<SimpleMethodTypes, SimpleArgs>>
   | Partial<Record<ComplexMethodTypes, ComplexArgs>>;
@@ -21,15 +23,8 @@ type ConstructorArgs =
 type SimpleMethodCallType = Array<() => void>;
 type ComplexMethodCallType = { [key: string]: Array<() => void> };
 
-type A = {
-  [key in SimpleMethodTypes]?: SimpleMethodCallType;
-};
-
-type B = {
-  [key in ComplexMethodTypes]?: ComplexMethodCallType;
-};
-
-type MethodCalls = A & B;
+type MethodCalls = { [key in SimpleMethodTypes]?: SimpleMethodCallType } &
+  { [key in ComplexMethodTypes]?: ComplexMethodCallType };
 
 export default class AllureBuilder {
   private methodCalls: MethodCalls = {};
@@ -73,6 +68,15 @@ export default class AllureBuilder {
       }
     );
     flatMethodCalls.forEach((method) => method());
+  }
+
+  reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined) {
+    if (!methodCallKeys) this.methodCalls = {};
+    else {
+      [methodCallKeys].flat().forEach((key) => {
+        delete this.methodCalls[key];
+      });
+    }
   }
 
   owner(args: SimpleArgs, overwriteExisting: boolean) {
