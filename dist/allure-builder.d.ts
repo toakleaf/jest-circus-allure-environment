@@ -2,13 +2,13 @@ declare type SimpleArgs = string | Array<string>;
 declare type ComplexArgs = {
     [key: string]: string;
 };
-declare enum SimpleMethodTypes {
+export declare enum SimpleMethodTypes {
     "OWNERS" = "owners",
     "EPICS" = "epics",
     "FEATURES" = "features",
     "STORIES" = "stories"
 }
-declare enum ComplexMethodTypes {
+export declare enum ComplexMethodTypes {
     "PARAMETERS" = "parameters",
     "LABELS" = "labels"
 }

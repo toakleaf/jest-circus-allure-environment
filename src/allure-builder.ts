@@ -2,14 +2,14 @@ type SimpleArgs = string | Array<string>;
 
 type ComplexArgs = { [key: string]: string };
 
-enum SimpleMethodTypes {
+export enum SimpleMethodTypes {
   "OWNERS" = "owners",
   "EPICS" = "epics",
   "FEATURES" = "features",
   "STORIES" = "stories",
 }
 
-enum ComplexMethodTypes {
+export enum ComplexMethodTypes {
   "PARAMETERS" = "parameters",
   "LABELS" = "labels",
 }

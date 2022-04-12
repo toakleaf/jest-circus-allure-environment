@@ -1,17 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ComplexMethodTypes = exports.SimpleMethodTypes = void 0;
 var SimpleMethodTypes;
 (function (SimpleMethodTypes) {
     SimpleMethodTypes["OWNERS"] = "owners";
     SimpleMethodTypes["EPICS"] = "epics";
     SimpleMethodTypes["FEATURES"] = "features";
     SimpleMethodTypes["STORIES"] = "stories";
-})(SimpleMethodTypes || (SimpleMethodTypes = {}));
+})(SimpleMethodTypes = exports.SimpleMethodTypes || (exports.SimpleMethodTypes = {}));
 var ComplexMethodTypes;
 (function (ComplexMethodTypes) {
     ComplexMethodTypes["PARAMETERS"] = "parameters";
     ComplexMethodTypes["LABELS"] = "labels";
-})(ComplexMethodTypes || (ComplexMethodTypes = {}));
+})(ComplexMethodTypes = exports.ComplexMethodTypes || (exports.ComplexMethodTypes = {}));
 class AllureBuilder {
     constructor(args = {}) {
         this.methodCalls = {};
