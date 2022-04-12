@@ -73,8 +73,7 @@ export default class AllureBuilder {
     methodCallKeys:
       | SimpleMethodTypes
       | ComplexMethodTypes
-      | Array<SimpleMethodTypes>
-      | Array<ComplexMethodTypes>
+      | Array<SimpleMethodTypes | ComplexMethodTypes>
       | undefined
   ) {
     if (!methodCallKeys) this.methodCalls = {};

@@ -17,7 +17,7 @@ export default class AllureBuilder {
     private methodCalls;
     constructor(args?: ConstructorArgs);
     build(): this;
-    reset(methodCallKeys: SimpleMethodTypes | ComplexMethodTypes | Array<SimpleMethodTypes> | Array<ComplexMethodTypes> | undefined): this;
+    reset(methodCallKeys: SimpleMethodTypes | ComplexMethodTypes | Array<SimpleMethodTypes | ComplexMethodTypes> | undefined): this;
     owner(args: SimpleArgs, overwriteExisting?: boolean): this;
     vertical: (args: SimpleArgs, overwriteExisting?: boolean) => this;
     horizontal: (args: SimpleArgs, overwriteExisting?: boolean) => this;
