@@ -14,8 +14,6 @@ export enum ComplexMethodTypes {
   "LABELS" = "labels",
 }
 
-export type MethodTypes = SimpleMethodTypes | ComplexMethodTypes;
-
 type ConstructorArgs =
   | Partial<Record<SimpleMethodTypes, SimpleArgs>>
   | Partial<Record<ComplexMethodTypes, ComplexArgs>>;
@@ -71,7 +69,14 @@ export default class AllureBuilder {
     return this;
   }
 
-  reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined) {
+  reset(
+    methodCallKeys:
+      | SimpleMethodTypes
+      | ComplexMethodTypes
+      | Array<SimpleMethodTypes>
+      | Array<ComplexMethodTypes>
+      | undefined
+  ) {
     if (!methodCallKeys) this.methodCalls = {};
     else {
       [methodCallKeys].flat().forEach((key) => {

@@ -16,4 +16,3 @@ export {
   SimpleMethodTypes,
   ComplexMethodTypes,
 } from "./allure-builder";
-export type { MethodTypes } from "./allure-builder";

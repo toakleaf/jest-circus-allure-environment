@@ -9,4 +9,3 @@ export { ContentType } from "./jest-allure-interface";
 export type { default as StepWrapper } from "./step-wrapper";
 export type { default as JestAllureInterface } from "./jest-allure-interface";
 export { default as AllureBuilder, SimpleMethodTypes, ComplexMethodTypes, } from "./allure-builder";
-export type { MethodTypes } from "./allure-builder";

@@ -12,13 +12,12 @@ export declare enum ComplexMethodTypes {
     "PARAMETERS" = "parameters",
     "LABELS" = "labels"
 }
-export declare type MethodTypes = SimpleMethodTypes | ComplexMethodTypes;
 declare type ConstructorArgs = Partial<Record<SimpleMethodTypes, SimpleArgs>> | Partial<Record<ComplexMethodTypes, ComplexArgs>>;
 export default class AllureBuilder {
     private methodCalls;
     constructor(args?: ConstructorArgs);
     build(): this;
-    reset(methodCallKeys: MethodTypes | Array<MethodTypes> | undefined): this;
+    reset(methodCallKeys: SimpleMethodTypes | ComplexMethodTypes | Array<SimpleMethodTypes> | Array<ComplexMethodTypes> | undefined): this;
     owner(args: SimpleArgs, overwriteExisting?: boolean): this;
     vertical: (args: SimpleArgs, overwriteExisting?: boolean) => this;
     horizontal: (args: SimpleArgs, overwriteExisting?: boolean) => this;
