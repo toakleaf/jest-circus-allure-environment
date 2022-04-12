@@ -82,6 +82,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   vertical = this.epic;
@@ -94,6 +95,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   feature(args: SimpleArgs, overwriteExisting: boolean) {
@@ -103,6 +105,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   function = this.story;
@@ -114,6 +117,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   parameter(args: ComplexArgs, overwriteExisting: boolean) {
@@ -123,6 +127,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   label(args: ComplexArgs, overwriteExisting: boolean) {
@@ -132,6 +137,7 @@ export default class AllureBuilder {
       args,
       overwriteExisting
     );
+    return this;
   }
 
   private getSimpleAllureMethod(
