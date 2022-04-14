@@ -1,16 +1,8 @@
 /// <reference types="node" />
-import { AllureGroup, AllureRuntime, AllureStep, AttachmentOptions, AllureTest, Category, ExecutableItemWrapper } from 'allure-js-commons';
-import type * as jest from '@jest/types';
-import JestAllureInterface, { ContentType } from './jest-allure-interface';
+import { AllureGroup, AllureRuntime, AllureStep, AttachmentOptions, AllureTest, Category, ExecutableItemWrapper } from "allure-js-commons";
+import type * as jest from "@jest/types";
+import JestAllureInterface, { ContentType } from "./jest-allure-interface";
 export default class AllureReporter {
-    currentExecutable: ExecutableItemWrapper | null;
-    private readonly allureRuntime;
-    private readonly suites;
-    private readonly steps;
-    private readonly tests;
-    private readonly jiraUrl;
-    private readonly tmsUrl;
-    private readonly categories;
     constructor(options: {
         allureRuntime: AllureRuntime;
         jiraUrl?: string;
@@ -18,10 +10,10 @@ export default class AllureReporter {
         environmentInfo?: Record<string, string>;
         categories?: Category[];
     });
-    getImplementation(): JestAllureInterface;
     get currentSuite(): AllureGroup | null;
     get currentStep(): AllureStep | null;
     get currentTest(): AllureTest | null;
+    getImplementation(): JestAllureInterface;
     environmentInfo(info?: Record<string, string>): void;
     startTestFile(suiteName?: string): void;
     endTestFile(): void;
@@ -47,5 +39,14 @@ export default class AllureReporter {
     private setAllureReportPragmas;
     private setAllureLabelsAndLinks;
     private addSuiteLabelsToTestCase;
-    private collectTestParentNames;
+    currentExecutable: ExecutableItemWrapper | null;
+    private docblockRe;
+    private readonly allureRuntime;
+    private readonly suites;
+    private readonly steps;
+    private readonly tests;
+    private readonly jiraUrl;
+    private readonly tmsUrl;
+    private readonly categories;
+    private ownerRe;
 }
