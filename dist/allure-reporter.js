@@ -247,9 +247,9 @@ class AllureReporter {
         const docblock = this.extractDocBlock(serializedTestCode);
         const { pragmas, comments } = jest_docblock_1.parseWithComments(docblock);
         let code = serializedTestCode.replace(docblock, "");
+        console.log(code);
         // filter out test owner so typescript formatting doesn't break
         code = code.replace(this.ownerRe, "");
-        console.log(code);
         // Add newline before the first expect()
         code = code.split(/(expect[\S\s.]*)/g).join("\n");
         code = prettier.format(code, {
