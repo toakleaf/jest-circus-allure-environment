@@ -249,6 +249,7 @@ class AllureReporter {
         let code = serializedTestCode.replace(docblock, "");
         // filter out test owner so typescript formatting doesn't break
         code = code.replace(this.ownerRe, "");
+        console.log(code);
         // Add newline before the first expect()
         code = code.split(/(expect[\S\s.]*)/g).join("\n");
         code = prettier.format(code, {
