@@ -114,6 +114,7 @@ class AllureReporter {
     }
     startTestCase(test, state, testPath) {
         var _a, _b;
+        console.log("startTestCase", test);
         if (this.currentSuite === null) {
             throw new Error("startTestCase called while no suite is running");
         }

@@ -145,6 +145,7 @@ export default class AllureReporter {
     state: jest.Circus.State,
     testPath: string
   ): void {
+    console.log("startTestCase", test);
     if (this.currentSuite === null) {
       throw new Error("startTestCase called while no suite is running");
     }
